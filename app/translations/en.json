@@ -1,0 +1,21 @@
+{
+  "components.Header.company": "The company",
+  "components.Header.work": "How we work",
+  "components.Header.contact": "Contact us",
+  "components.Header.logo.tagline": "The best way to find your home",
+
+  "containers.HomePage.downloadSearch": "Download JSON",
+  "containers.HomePage.filtersTitle": "Filters:",
+  "containers.HomePage.filterPropertyTitle": "Property type",
+  "containers.HomePage.filterPriceTitle": "Sort by price",
+  "containers.HomePage.filterProperty.all": "All",
+  "containers.HomePage.filterProperty.apartment": "Apartment",
+  "containers.HomePage.filterProperty.studio": "Studio",
+  "containers.HomePage.filterProperty.room": "Shared room",
+  "containers.HomePage.filterPriceAscending": "Ascending",
+  "containers.HomePage.filterPriceDescending": "Descending",
+  "containers.HomePage.actionDetails": "More details",
+  "containers.HomePage.actionBook": "Book now!",
+
+  "containers.NotFoundPage.header": "Page not found!"
+}
