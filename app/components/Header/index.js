@@ -20,15 +20,15 @@ const Header = () => (
 
       <NavBar>
 
-        <HeaderLink to="/company">
+        <HeaderLink to="/info/company">
           <FormattedMessage {...messages.company} />
         </HeaderLink>
 
-        <HeaderLink to="/how-we-work">
+        <HeaderLink to="/info/how-we-work">
           <FormattedMessage {...messages.work} />
         </HeaderLink>
 
-        <HeaderLink to="/contact-us">
+        <HeaderLink to="/info/contact-us">
           <FormattedMessage {...messages.contact} />
         </HeaderLink>
 

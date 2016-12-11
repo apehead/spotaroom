@@ -20,11 +20,17 @@ function appReducer(state = initialState, action) {
       return state
         .set('feedId', action.payload.feedId);
 
-    case LOAD_ROOMS:
+    case LOAD_ROOMS: {
+      const feedId = action.payload.feedId ?
+        action.payload.feedId :
+        DEFAULT_FEED_ID;
+
       return state
         .set('loading', true)
         .set('error', false)
+        .set('feedId', feedId)
         .set('rooms', []);
+    }
 
     case LOAD_ROOMS_RESPONSE:
       return action.error ?

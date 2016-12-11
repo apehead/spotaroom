@@ -1,15 +1,16 @@
 import { takeLatest } from 'redux-saga';
-import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
+import { take, call, put, /* select, */ fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import request from 'utils/request';
 import { LOAD_ROOMS } from 'containers/App/constants';
-import { selectFeedId } from 'containers/App/selectors';
+// import { selectFeedId } from 'containers/App/selectors';
 import { roomsLoaded, roomsLoadedError } from 'containers/App/actions';
 
 
-export function* getRooms() {
-  const feedId = yield select(selectFeedId());
+export function* getRooms(action) {
+  const { feedId } = action.payload;
+  // const feedId = yield select(selectFeedId());
   const requestURL = `spotahome/api/public/listings/search/homecards/${feedId}`;
 
   try {

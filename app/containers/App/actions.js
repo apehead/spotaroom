@@ -1,7 +1,8 @@
 import {
   CHANGE_FEED,
   LOAD_ROOMS,
-  LOAD_ROOMS_RESPONSE
+  LOAD_ROOMS_RESPONSE,
+  DEFAULT_FEED_ID
 } from './constants';
 
 
@@ -12,9 +13,10 @@ export function changeFeed(feedId) {
   };
 }
 
-export function loadRooms() {
+export function loadRooms(feedId = DEFAULT_FEED_ID) {
   return {
-    type: LOAD_ROOMS
+    type: LOAD_ROOMS,
+    payload: { feedId }
   };
 }
 

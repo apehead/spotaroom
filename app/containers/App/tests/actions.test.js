@@ -3,7 +3,8 @@ import expect from 'expect';
 import {
   LOAD_ROOMS,
   LOAD_ROOMS_RESPONSE,
-  CHANGE_FEED
+  CHANGE_FEED,
+  DEFAULT_FEED_ID
 } from '../constants';
 
 import {
@@ -18,7 +19,8 @@ describe('App Actions', () => {
   describe('loadRooms', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: LOAD_ROOMS
+        type: LOAD_ROOMS,
+        payload: { feedId: DEFAULT_FEED_ID }
       };
 
       expect(loadRooms()).toEqual(expectedResult);

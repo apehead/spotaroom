@@ -82,11 +82,10 @@ describe('<HomePage />', () => {
       it('should dispatch loadRooms when called', () => {
         const dispatch = expect.createSpy();
         const result = mapDispatchToProps(dispatch);
-        const filterProperty = 'fake filter property';
 
         result.onMounted();
 
-        expect(dispatch).toHaveBeenCalledWith(loadRooms(filterProperty));
+        expect(dispatch).toHaveBeenCalledWith(loadRooms());
       });
     });
 

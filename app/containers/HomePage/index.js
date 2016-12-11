@@ -22,7 +22,7 @@ import messages from './messages';
 import { loadRooms } from 'containers/App/actions';
 import { changeFilterPrice, changeFilterProperty } from './actions';
 import { selecFilteredRooms } from './selectors';
-import { selectFeedId, selectLoading, selectError } from 'containers/App/selectors';
+import { /* selectFeedId, */ selectLoading, selectError } from 'containers/App/selectors';
 // import { selectLocale } from '../LanguageProvider/selectors';
 import {
   FILTER_PROPERTY_ALL,
@@ -36,21 +36,29 @@ import {
 export class HomePage extends React.PureComponent {
 
   componentDidMount() {
-    // const { feedId } = this.props.params;
-    this.props.onMounted();
+    this.props.onMounted(this.props.feedId);
   }
 
   renderMainContent() {
     if (this.props.loading) {
       return (<Loading />);
     } else if (this.props.error !== false) {
-      // TODO: create an error component
+      // TODO: extract to a component
       const ErrorComponent = () => (
         <ListItem item={'Something went wrong :('} />
       );
 
       return (<List component={ErrorComponent} />);
     } else if (this.props.rooms !== false) {
+      if (!this.props.rooms.length) {
+        // TODO: extract to a component
+        const EmptyListComponent = () => (
+          <ListItem item={'Sorry, no results for the selected filters'} />
+        );
+
+        return (<List component={EmptyListComponent} />);
+      }
+
       return (<List items={this.props.rooms} component={RoomListItem} />);
     }
 
@@ -113,7 +121,7 @@ export class HomePage extends React.PureComponent {
 }
 
 HomePage.propTypes = {
-  // params: PropTypes.object,
+  feedId: PropTypes.any,
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([
     PropTypes.object,
@@ -131,19 +139,23 @@ HomePage.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onMounted: () => dispatch(loadRooms()),
+    onMounted: (feedId) => dispatch(loadRooms(feedId)),
     onChangeFilterPrice: (evt) => dispatch(changeFilterPrice(evt.target.value)),
     onChangeFilterProperty: (evt) => dispatch(changeFilterProperty(evt.target.value))
   };
 }
 
-const mapStateToProps = createStructuredSelector({
-  // locale: selectLocale(),
-  feedId: selectFeedId(),
-  rooms: selecFilteredRooms(),
-  loading: selectLoading(),
-  error: selectError()
-});
+const mapStateToProps = (state, ownProps) => {
+  const { feedId } = ownProps.params;
+
+  return createStructuredSelector({
+    // locale: selectLocale(),
+    feedId: () => feedId,
+    rooms: selecFilteredRooms(),
+    loading: selectLoading(),
+    error: selectError()
+  });
+};
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
